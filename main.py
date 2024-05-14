@@ -6,6 +6,8 @@ import cv2
 import time
 import matplotlib.pyplot as plt
 # import testmodel
+# git config --global user.email "you@example.com"
+#   git config --global user.name "Your Name"
 import  yolo
 class queuedata():
     def __init__(self):
