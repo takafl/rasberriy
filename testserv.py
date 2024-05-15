@@ -3,7 +3,7 @@ from time import sleep
 
 # إعداد محرك السيرفو على البن رقم 17 (يمكنك تغيير رقم البن حسب الحاجة)
 servo = Servo(27)
-p16=LED()
+p16=LED(17)
 p16.on()
 
 try:
