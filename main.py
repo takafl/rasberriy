@@ -1,14 +1,9 @@
-import sys
-sys.path.append('/home/anas/site-packages')
-
 import numpy as np
 import cv2
 import time
 import matplotlib.pyplot as plt
-# import t
-#Gggestmodel
-
 import  yolo
+import  math as maths
 class queuedata():
     def __init__(self):
         self.listdataqueue=[]
@@ -18,8 +13,12 @@ class queuedata():
             else:
                 self.listdataqueue.pop(0)
                 self.listdataqueue.append(a)
+    def calcluat(self,x,y):
 
 
+        dist=maths.sqrt(maths.fabs(x-320)**2+maths.fabs(y-240)**2)
+        tetha=maths.cos(maths.fabs(x-320)/69.4)
+        tetha=maths.degrees(tetha)
     def draw3d(self):
         x=[]
         y=[]
@@ -27,60 +26,42 @@ class queuedata():
         for i in self.listdataqueue:
             x.append(i.center_x)
             y.append(i.center_y)
-
-
-
-            # Create a 3D plot
+            self.calcluat(i.center_x, i.center_y)
         fig = plt.figure()
         ax = fig.add_subplot(111)
 
-        # Plot the points in 3D space
+
         ax.scatter(x, y, c='r', marker='o')
         ax.plot(x, y, c='b')
-        # Set labels for the axes
+
         ax.set_xlabel('X Axis')
         ax.set_ylabel('Y Axis')
-
-
-        # Display the plot
-        # plt.show()
-
         slopes_x=x
         slopes_y=y
-        # Determine the direction based on changes in coordinates
         directions = []
-        print(slopes_x[0])
-        print(slopes_x)
 
         for i in range(len(slopes_x)-1):
 
 
+           if maths.fabs(320-slopes_x[i])<=20:
+                directions.append("f")
+           else:
+            if maths.fabs(slopes_x[i] - slopes_x[i+1])>5:
+                if 320-slopes_x[i]<=0:
+                     directions.append("Right")
+                else:
+                    directions.append("Left")
 
-            if slopes_x[i] - slopes_x[i+1]>5:
 
-                directions.append("Right")
-            elif slopes_x[i] - slopes_x[i+1]<-5:
-                directions.append("Left")
-            # else:
-            #     directions.append("No horizontal movement")
-            #
-            # if slopes_y[i] > slopes_y[i+1]:
-            #     directions.append("Up")
-            # elif slopes_y[i] < slopes_y[i+1]:
-            #     directions.append("Down")
-            # else:
-            #     directions.append("No vertical movement")
-
-        # Print movement directions
         for i in range(len(directions)):
             if directions[i] == "Right":
                 print(f"Between points {i} and {i + 1}: Right")
-            elif directions[i] == "Up":
-                print(f"Between points {i} and {i + 1}: Up")
+            elif directions[i] == "f":
+                print(f"Between points {i} and {i + 1}: f")
+
             elif directions[i] == "Left" and i > 0:
                 print(f"Between points {i} and {i + 1}: Left")
-            elif directions[i] == "Down" and i > 0:
-                print(f"Between points {i} and {i + 1}: Down")
+
 
 
 class Dataframe():
@@ -92,8 +73,9 @@ class Dataframe():
          def draw_bounding_boxes(self):
 
                  x, y, w, h = yolo.detection_object(self.frame)
-                 self.center_x = x + w // 2
-                 self.center_y = y + h // 2
+                 self.center_x = (x + w )// 2
+                 self.center_y = (y + h) // 2
+                 cv2.rectangle(self.frame, (self.center_x, self.center_y), (self.center_x, self.center_y), (0, 0, 255), 3)
                  return self.frame
 
 
@@ -108,12 +90,8 @@ while i<20:
 
     if not ret:
         break  # Break the loop if the video is over
-
-    # image_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-
-    # gray_frame = cv2.cvtColor(image_rgb, cv2.COLOR_RGB2GRAY)
-
-
+    h,w,_=frame.shape
+    cv2.rectangle(frame, (w//2, h//2), (w//2, h//2), (0, 0, 255), 3)
 
     aa = Dataframe(frame)
     frame1 = aa.draw_bounding_boxes()
