@@ -2,7 +2,7 @@ from gpiozero import PWMOutputDevice,LED
 import time
 
 # إنشاء كائن PWM مرتبط بالبن رقم 27
-pwm = PWMOutputDevice(27)
+pwm = PWMOutputDevice(17)
 p27=LED(27)
 LED.on()
 # تعريف دالة لتعيين قيمة PWM
