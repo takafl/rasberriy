@@ -4,7 +4,7 @@ import time
 # إنشاء كائن PWM مرتبط بالبن رقم 27
 pwm = PWMOutputDevice(17)
 p27=LED(27)
-LED.on()
+p27.on()
 # تعريف دالة لتعيين قيمة PWM
 def set_pwm_value(value):
     if value in [50, 25, 75, 100]:
