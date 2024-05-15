@@ -1,4 +1,3 @@
-
 import sys
 sys.path.append('/home/anas/testv/lib/python3.11/site-packages')
 
@@ -7,14 +6,16 @@ import cv2
 import math
 
 # Start webcam
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)  # Set width to 320
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)  # Set height to 240
+cap.set(cv2.CAP_PROP_FPS, 15)  # Reduce frame rate to 15 FPS
 
-# Model
 model = YOLO("yolo-Weights/yolov8n.pt")
 
 # Object classes
 classNames = ["car", "aeroplane"]  # تقليل عدد الفئات
 
-# استخدام دقة الصورة الأصغر
 def detection_object(frame):
     x1 = 0
     x2 = 0
@@ -49,3 +50,23 @@ def detection_object(frame):
 
                 cv2.putText(frame, classNames[cls], org, font, fontScale, color, thickness)
     return x1, y1, x2, y2
+
+try:
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        detection_object(frame)
+
+        # Display the resulting frame
+        cv2.imshow('frame', frame)
+
+        # Press 'q' to exit
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+except KeyboardInterrupt:
+    pass
+finally:
+    cap.release()
+    cv2.destroyAllWindows()
