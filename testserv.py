@@ -1,8 +1,10 @@
-from gpiozero import Servo
+from gpiozero import Servo,LED
 from time import sleep
 
 # إعداد محرك السيرفو على البن رقم 17 (يمكنك تغيير رقم البن حسب الحاجة)
-servo = Servo(17)
+servo = Servo(27)
+p16=LED()
+p16.on()
 
 try:
     while True:
@@ -34,3 +36,4 @@ except KeyboardInterrupt:
 finally:
     # التأكد من تحرير الموارد عند النهاية
     servo.close()
+    p16.close()
