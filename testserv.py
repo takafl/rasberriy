@@ -1,18 +1,28 @@
-from gpiozero import Servo,LED
+from gpiozero import Servo
 from time import sleep
 
 # إعداد محرك السيرفو على البن رقم 17 (يمكنك تغيير رقم البن حسب الحاجة)
-servo = Servo(27)
+servo = Servo(17)
+
+def move_servo_to(position):
+    """
+    تحريك محرك السيرفو إلى موضع محدد.
+    
+    Args:
+    position (float): قيمة الموضع بين -1 (أقصى اليسار) و 1 (أقصى اليمين).
+    """
+    if -1 <= position <= 1:
+        servo.value = position
+      
 
 
 try:
     while True:
-        # تحريك السيرفو إلى أقصى اليسار
-        servo.min()
-        print("Servo is at min position.")
-        
-        
-
+        # اختبار الدالة مع قيم محددة
+        positions = [-1, -0.5, 0, 0.5, 1]
+        for pos in range(-1,1,0.1):
+            move_servo_to(pos)
+            sleep(0.5)
 except KeyboardInterrupt:
     # تحرير الموارد عند انتهاء البرنامج أو عند مقاطعة المستخدم
     print("Exiting program.")
