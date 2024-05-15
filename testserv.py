@@ -20,8 +20,8 @@ try:
     while True:
         # اختبار الدالة مع قيم محددة
         positions = [-1, -0.5, 0, 0.5, 1]
-        for pos in range(-100,100,1):
-            move_servo_to(pos/100)
+        for pos in range(-10,10,1):
+            move_servo_to(pos/10)
             sleep(0.5)
 except KeyboardInterrupt:
     # تحرير الموارد عند انتهاء البرنامج أو عند مقاطعة المستخدم
