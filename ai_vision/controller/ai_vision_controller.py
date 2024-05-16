@@ -15,9 +15,11 @@ class AiVisionController:
         center_y = (y + h) // 2
         return x,y,w,h,center_x,center_y
     # function to detection and draw the rectangle
+
     def detectionObjectsAndDrowRectangleFromFrame(frame:CustomDataframe):
         _,_,_,_,center_x,center_y = AiVisionController.detectionObjectsFromFrame(frame)
         AiVisionController.drawRectangle(frame,center_x,center_y)
+
     # draw rectangle
     def drawRectangle(frame:CustomDataframe):
         cv2.rectangle(frame.frame, (frame.center_x, frame.center_y), (frame.center_x, frame.center_y), (0, 0, 255), 3)
