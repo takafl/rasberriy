@@ -7,7 +7,7 @@ import  yolo
 import  math as maths
 from ..domain.custom_queue import CustomQueuedata
 from ..domain.custom_data_frame import CustomDataframe
-class AiVisionController:
+class AiVistionController:
     # detection object
     def detectionObjectsFromFrame(frame):
         x, y, w, h = yolo.detection_object(frame)
@@ -17,8 +17,8 @@ class AiVisionController:
     # function to detection and draw the rectangle
 
     def detectionObjectsAndDrowRectangleFromFrame(frame:CustomDataframe):
-        _,_,_,_,center_x,center_y = AiVisionController.detectionObjectsFromFrame(frame)
-        AiVisionController.drawRectangle(frame,center_x,center_y)
+        _,_,_,_,center_x,center_y = AiVistionController.detectionObjectsFromFrame(frame)
+        AiVistionController.drawRectangle(frame,center_x,center_y)
 
     # draw rectangle
     def drawRectangle(frame:CustomDataframe):
