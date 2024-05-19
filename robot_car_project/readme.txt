@@ -1,17 +1,17 @@
 robot_car_project/
 │
-├── model/
+├── models/
 │   ├── ai_vision.py      # AI vision processing code
 │   ├── sensor_processing.py # Sensor data processing code
 │   └── data_model.py     # Data structures and algorithms
 │
-├── view/
+├── views/
 │   ├── ui.py             # User interface code
 │   ├── visualizations.py # Code for data visualizations
 │   └── logger.py         # Logging output
 │
-├── controller/
-│   ├── main_controller.py # Main controller code
+├── controllers/
+│   ├── ai_vision_controller.py # Main controller code
 │   ├── command_processor.py # Handles input commands
 │   └── integration.py    # Integration between model and hardware
 │
