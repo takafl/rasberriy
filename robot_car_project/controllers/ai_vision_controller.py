@@ -5,8 +5,8 @@ import time
 import matplotlib.pyplot as plt
 import  yolo
 import  math as maths
-from ..models.custom_data_frame import CustomQueuedata
-from ..domain.custom_data_frame import CustomDataframe
+from ..models.custom_queue import CustomQueuedata
+from ..models.custom_data_frame import CustomDataframe
 class AiVistionController:
     # detection object
     def detectionObjectsFromFrame(frame):
@@ -26,7 +26,7 @@ class AiVistionController:
         return frame.frame
 
 
-    def handelQueueFrames(queue:CustomQueuedata):
+    def handelQueueFrames(queue:CustomQueuedata,onLeft:function,onRight:function):
         x=[]
         y=[]
         i:CustomDataframe
