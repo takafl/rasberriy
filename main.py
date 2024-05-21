@@ -22,7 +22,6 @@ class queuedata():
     def draw3d(self):
         x=[]
         y=[]
-
         for i in self.listdataqueue:
             x.append(i.center_x)
             y.append(i.center_y)

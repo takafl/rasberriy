@@ -26,47 +26,28 @@ class AiVistionController:
         return frame.frame
 
 
-    def handelQueueFrames(queue:CustomQueuedata,onLeft:function,onRight:function):
-        x=[]
-        y=[]
-        i:CustomDataframe
-        for  i in queue.listdataqueue:
-        
-            x.append(i.center_x)
-            y.append(i.center_y)
-        fig = plt.figure()
-        ax = fig.add_subplot(111)
-
-
-        ax.scatter(x, y, c='r', marker='o')
-        ax.plot(x, y, c='b')
-
-        ax.set_xlabel('X Axis')
-        ax.set_ylabel('Y Axis')
-        slopes_x=x
-        slopes_y=y
-        directions = []
-
-        for i in range(len(slopes_x)-1):
-
-
-           if maths.fabs(320-slopes_x[i])<=20:
-                directions.append("f")
-           else:
-            if maths.fabs(slopes_x[i] - slopes_x[i+1])>5:
-                if 320-slopes_x[i]<=0:
-                     directions.append("Right")
+    def handelFrames(frame:CustomDataframe,onLeft:function,onRight:function,onForword:function):
+            if maths.fabs(320-frame.center_x)<=20:
+               onForword()
+            else:
+                distans=320-frame.center_x
+                if distans<=0:
+                        #  directions.append("Right")
+                    onRight(maths.fabs(distans))
                 else:
-                    directions.append("Left")
+                    
+                    onLeft(maths.fabs(distans))
+           
 
 
-        for i in range(len(directions)):
-            if directions[i] == "Right":
-                print(f"Between points {i} and {i + 1}: Right")
-            elif directions[i] == "f":
-                print(f"Between points {i} and {i + 1}: f")
+ 
 
-            elif directions[i] == "Left" and i > 0:
-                print(f"Between points {i} and {i + 1}: Left")
+
+
+
+
+         
+
+
 
 
