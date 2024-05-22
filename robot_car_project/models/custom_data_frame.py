@@ -4,7 +4,7 @@ import time
 import matplotlib.pyplot as plt
 import  yolo
 import  math as maths
-import AiVisionController as aic
+
 class CustomDataframe():
          def __init__(self, arry=np.array,center_x=0,center_y=0):
             self.frame = arry

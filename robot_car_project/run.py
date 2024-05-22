@@ -1,4 +1,6 @@
-from .controllers.camera_controller import CameraController
+#!/usr/bin/env python3
+
+from   controllers.camera_controller import CameraController
 
 app=CameraController()
 while True:

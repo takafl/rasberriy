@@ -6,11 +6,11 @@ import  yolo
 import  math as maths
 from typing import List
 
-from custom_data_frame import   CustomDataframe  
+from models.custom_data_frame import   CustomDataframe  
 
 class CustomQueuedata():
     def __init__(self,):
-        self.listdataqueue=List[CustomDataframe]
+        self.listdataqueue: List[CustomDataframe] = []
     def appent2list(self,a:CustomDataframe):
             if len(self.listdataqueue)<10:
              self.listdataqueue.append(a)

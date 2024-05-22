@@ -1,5 +1,5 @@
-import sys
-sys.path.append('/home/anas/testv/lib/python3.11/site-packages')
+# import sys
+# sys.path.append('/home/anas/testv/lib/python3.11/site-packages')
 
 from ultralytics import YOLO
 import cv2
